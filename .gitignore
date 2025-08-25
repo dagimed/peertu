@@ -1,6 +1,16 @@
-.venv/
 __pycache__/
-db.sqlite3
 *.pyc
-.env
+*.pyo
+*.pyd
+*.sqlite3
+*.log
 
+
+.venv/
+venv/
+ENV/
+
+# Django
+db.sqlite3
+
+.env
