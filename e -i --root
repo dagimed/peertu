@@ -1,0 +1,8 @@
+[33mf0247af[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m feat(tutors+subjects):model, CRUD, filter/search
+[33ma093416[m[33m ([m[1;31morigin/main[m[33m)[m Add requirements.txt
+[33m8e8d0bf[m feat(users): custom User model ,registration
+[33m024b116[m feat: auth config, URLs for apps
+[33mfa0f1ec[m Merge remote-tracking branch 'origin/main' into main
+[33mba8b2fa[m initialize Django project and apps
+[33m5fc9b1f[m Initial Django project: peer tutoring
+[33m36c41a6[m Initial commit
