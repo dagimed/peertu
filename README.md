@@ -22,58 +22,173 @@ PeerTu is a Django REST API for connecting university students for **peer-to-pee
 - SQLite 
 
 ---
-## API Routes
+# 📚 PeerTu API Routes
 
-## Users
-| Method | Endpoint               | Description           |
-|--------|----------------------|----------------------|
-| POST   | /api/users/register/  | Register a new user  |
-| POST   | /api/token/           | Obtain JWT token     |
-| POST   | /api/token/refresh/   | Refresh JWT token    |
+Welcome to the **PeerTu API**.  
+Base URL (local): `http://localhost:8000/`
 
-## Subjects
-| Method | Endpoint                | Description         |
-|--------|------------------------|-------------------|
-| GET    | /api/subjects/         | List all subjects  |
-| POST   | /api/subjects/         | Create a subject   |
-| GET    | /api/subjects/<id>/    | Get a subject      |
-| PUT    | /api/subjects/<id>/    | Update a subject   |
-| DELETE | /api/subjects/<id>/    | Delete a subject   |
+---
 
-## Tutors
-| Method | Endpoint                | Description              |
-|--------|------------------------|--------------------------|
-| GET    | /api/tutors/           | List all tutor profiles  |
-| POST   | /api/tutors/           | Create tutor profile     |
-| GET    | /api/tutors/<id>/      | Get tutor profile        |
-| PUT    | /api/tutors/<id>/      | Update tutor profile     |
-| DELETE | /api/tutors/<id>/      | Delete tutor profile     |
+## 🏠 Home
+- **Endpoint:** `GET /`
+- **Description:** Returns a welcome JSON message.
 
-## Lessons (Tutoring Sessions)
-| Method | Endpoint                | Description                   |
-|--------|------------------------|-------------------------------|
-| GET    | /api/lessons/          | List all sessions             |
-| POST   | /api/lessons/          | Schedule a tutoring session   |
-| GET    | /api/lessons/<id>/     | Get session details           |
-| PUT    | /api/lessons/<id>/     | Update session                |
-| DELETE | /api/lessons/<id>/     | Cancel session                |
+Sample Response:
+```json
+{
+  "message": "Welcome to PeerTu API! Visit /api/ for endpoints."
+}
+```
 
-## Chat
-| Method | Endpoint                | Description               |
-|--------|------------------------|---------------------------|
-| GET    | /api/chats/            | List all messages         |
-| POST   | /api/chats/            | Send a message            |
-| GET    | /api/chats/<id>/       | Get a specific message    |
-| DELETE | /api/chats/<id>/       | Delete a message          |
+---
 
-## Reviews
-| Method | Endpoint                | Description             |
-|--------|------------------------|-------------------------|
-| GET    | /api/reviews/          | List all reviews        |
-| POST   | /api/reviews/          | Create a review         |
-| GET    | /api/reviews/<id>/     | Get a review            |
-| PUT    | /api/reviews/<id>/     | Update a review         |
-| DELETE | /api/reviews/<id>/     | Delete a review         |
+## 👤 Users & Auth
+
+### Register
+- **Endpoint:** `POST /api/auth/register/`
+- **Description:** Register a new user.
+- **Sample Request Body:**
+```json
+{
+  "username": "student1",
+  "email": "student1@example.com",
+  "password": "1234@pass"
+}
+```
+
+### Login (JWT)
+- **Endpoint:** `POST /api/auth/login/`
+- **Description:** Login and get JWT token.
+- **Sample Request Body:**
+```json
+{
+  "username": "student1",
+  "password": "1234@pass"
+}
+```
+
+### Refresh Token
+- **Endpoint:** `POST /api/auth/refresh/`
+- **Description:** Refresh access token with a refresh token.
+
+---
+
+## 📘 Subjects
+
+### List Subjects
+- **Endpoint:** `GET /api/subjects/`
+- **Description:** Retrieve all subjects.  
+- **Auth:** Required
+
+### Create Subject
+- **Endpoint:** `POST /api/subjects/`
+- **Sample Request Body:**
+```json
+{
+  "name": "Mathematics"
+}
+```
+
+### Update Subject
+- **Endpoint:** `PUT /api/subjects/{id}/`
+- **Sample Request Body:**
+```json
+{
+  "name": "Advanced Mathematics"
+}
+```
+
+### Delete Subject
+- **Endpoint:** `DELETE /api/subjects/{id}/`
+
+---
+
+## 👩‍🏫 Tutors
+
+### List Tutors
+- **Endpoint:** `GET /api/tutors/`
+
+### Create Tutor Profile
+- **Endpoint:** `POST /api/tutors/`
+- **Sample Request Body:**
+```json
+{
+  "bio": "I am a math tutor",
+  "subject_ids": [1, 2],
+  "availability_text": "Mon-Fri 9AM-5PM"
+}
+```
+
+### Update Tutor Profile
+- **Endpoint:** `PUT /api/tutors/{id}/`
+- **Sample Request Body:**
+```json
+{
+  "bio": "Updated bio",
+  "subject_ids": [1, 3]
+}
+```
+
+### Delete Tutor Profile
+- **Endpoint:** `DELETE /api/tutors/{id}/`
+
+---
+
+## 📅 Sessions (Lessons)
+
+### List Sessions
+- **Endpoint:** `GET /api/lessons/`
+
+### Book a Session
+- **Endpoint:** `POST /api/lessons/`
+- **Sample Request Body:**
+```json
+{
+  "tutor": 2,
+  "learner": 1,
+  "subject": 1,
+  "start_time": "2025-09-01T10:00:00Z",
+  "duration_minutes": 60
+}
+```
+
+---
+
+## 💬 Chat
+
+### List Messages
+- **Endpoint:** `GET /api/chat/?session={id}`
+
+### Send Message
+- **Endpoint:** `POST /api/chat/`
+- **Sample Request Body:**
+```json
+{
+  "session": 1,
+  "sender": 1,
+  "message": "Hello, I have a question."
+}
+```
+
+---
+
+## ⭐ Reviews
+
+### List Reviews
+- **Endpoint:** `GET /api/reviews/`
+
+### Create Review
+- **Endpoint:** `POST /api/reviews/`
+- **Sample Request Body:**
+```json
+{
+  "session": 1,
+  "reviewer": 1,
+  "rating": 5,
+  "comment": "Great tutoring session!"
+}
+```
+
 ---
 
 ## ⚙️ Installation
