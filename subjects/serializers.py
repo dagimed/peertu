@@ -1,4 +1,3 @@
-# subjects/serializers.py
 from rest_framework import serializers
 from subjects.models import Subject
 

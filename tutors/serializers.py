@@ -7,11 +7,11 @@ class TutorProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source="user.username", read_only=True)
     role = serializers.CharField(source="user.role", read_only=True)
     subjects = SubjectSerializer(many=True, read_only=True)
-    subjects = serializers.PrimaryKeyRelatedField(
+    subject_ids = serializers.PrimaryKeyRelatedField(
         many=True,
-        queryset=Subject.objects.all()
+        queryset=Subject.objects.all(),
+        source='subjects'   
     )
-
 
     class Meta:
         model = TutorProfile
