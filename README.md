@@ -33,6 +33,7 @@ source .venv/bin/activate   # on Linux/Mac
 .venv\Scripts\activate      # on Windows
 python manage.py migrate
 python manage.py runserver
+```
 ---
 # API Routes
 
