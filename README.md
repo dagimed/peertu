@@ -22,20 +22,7 @@ PeerTu is a Django REST API for connecting university students for **peer-to-pee
 - SQLite 
 
 ---
-
-## ⚙️ Installation
-
-```bash
-git clone https://github.com/dagimed/peertu.git
-cd peertu
-python -m venv .venv
-source .venv/bin/activate   # on Linux/Mac
-.venv\Scripts\activate      # on Windows
-python manage.py migrate
-python manage.py runserver
-```
----
-# API Routes
+## API Routes
 
 ## Users
 | Method | Endpoint               | Description           |
@@ -88,3 +75,15 @@ python manage.py runserver
 | PUT    | /api/reviews/<id>/     | Update a review         |
 | DELETE | /api/reviews/<id>/     | Delete a review         |
 ---
+
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/dagimed/peertu.git
+cd peertu
+python -m venv .venv
+source .venv/bin/activate   # on Linux/Mac
+.venv\Scripts\activate      # on Windows
+python manage.py migrate
+python manage.py runserver
+```
