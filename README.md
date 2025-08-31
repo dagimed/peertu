@@ -52,7 +52,8 @@ Sample Response:
 {
   "username": "student1",
   "email": "student1@example.com",
-  "password": "1234@pass"
+  "password": "1234@pass",
+  "role": "tutor"
 }
 ```
 
@@ -78,11 +79,11 @@ Sample Response:
 ### List Subjects
 - **Endpoint:** `GET /api/subjects/`
 - **Description:** Retrieve all subjects.  
-- **Auth:** Required
 
 ### Create Subject
 - **Endpoint:** `POST /api/subjects/`
 - **Sample Request Body:**
+- **Auth:** Required
 ```json
 {
   "name": "Mathematics"
@@ -92,6 +93,7 @@ Sample Response:
 ### Update Subject
 - **Endpoint:** `PUT /api/subjects/{id}/`
 - **Sample Request Body:**
+- **Auth:** Required
 ```json
 {
   "name": "Advanced Mathematics"
@@ -100,6 +102,7 @@ Sample Response:
 
 ### Delete Subject
 - **Endpoint:** `DELETE /api/subjects/{id}/`
+- **Auth:** Required
 
 ---
 
@@ -134,14 +137,13 @@ Sample Response:
 
 ---
 
-## 📅 Sessions (Lessons)
+## 📅 Sessions
 
 ### List Sessions
-- **Endpoint:** `GET /api/lessons/`
+- **GET** `/api/sessions/`
 
 ### Book a Session
-- **Endpoint:** `POST /api/lessons/`
-- **Sample Request Body:**
+- **POST** `/api/sessions/`
 ```json
 {
   "tutor": 2,
@@ -152,21 +154,26 @@ Sample Response:
 }
 ```
 
+### Update Session Status
+- **POST** `/api/sessions/{id}/set-status/`
+```json
+{ "status": "approved" }
+```
+
 ---
 
-## 💬 Chat
+## 💬 Messages (Chat)
 
 ### List Messages
-- **Endpoint:** `GET /api/chat/?session={id}`
+- **GET** `/api/messages/`
 
-### Send Message
-- **Endpoint:** `POST /api/chat/`
-- **Sample Request Body:**
+### Send a Message
+- **POST** `/api/messages/`
 ```json
 {
   "session": 1,
   "sender": 1,
-  "message": "Hello, I have a question."
+  "message": "Hello tutor!"
 }
 ```
 
@@ -175,17 +182,16 @@ Sample Response:
 ## ⭐ Reviews
 
 ### List Reviews
-- **Endpoint:** `GET /api/reviews/`
+- **GET** `/api/reviews/`
 
 ### Create Review
-- **Endpoint:** `POST /api/reviews/`
-- **Sample Request Body:**
+- **POST** `/api/reviews/`
 ```json
 {
   "session": 1,
   "reviewer": 1,
   "rating": 5,
-  "comment": "Great tutoring session!"
+  "comment": "Great tutor!"
 }
 ```
 
